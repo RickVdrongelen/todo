@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', 'TaskController@index');
+Route::get('/', 'TaskController@index')->name('hoirick');
 Route::post('/task', 'TaskController@create');
 Route::delete('/task/{id}', 'TaskController@destroy');

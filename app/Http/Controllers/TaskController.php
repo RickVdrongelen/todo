@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Todo;
 
 class TaskController extends Controller
 {
     public function index() {
-        $tasks = Task::orderBy('created_at', 'asc')->get();
+        $tasks = Todo::all();
+
+        dd($tasks);
+
         return view('tasks', [
             'tasks' => $tasks
         ]);
@@ -24,7 +28,7 @@ class TaskController extends Controller
             ->withErrors($validator);
         }
 
-        $task = new Task;
+        $task = new Todo;
         $task->name = $request->name;
         $task->save();
 
@@ -32,7 +36,7 @@ class TaskController extends Controller
     }
 
     public function destroy(int $id) {
-        Task::findOrFail($id)->delete();
+        Todo::findOrFail($id)->delete();
 
         return redirect('/');
     }
